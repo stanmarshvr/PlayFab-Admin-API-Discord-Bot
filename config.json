@@ -3,5 +3,5 @@
   "playfab_title_id": "your PlayFab Title ID",
   "playfab_secret_key": "your PlayFab Secret Key",
   "allowed_role_id": "discord role ID you want to be able to use commands",
-  "command_prefix": "." // this is what you put at the beginning of every command if you didnt know (for example, if your prefix is & then the commands are &ban &addcurrency &help etc.
+  "command_prefix": "."
 }
