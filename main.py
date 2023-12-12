@@ -6,7 +6,8 @@ import json
 with open('config.json', 'r') as config_file:
     config = json.load(config_file)
 
-bot = commands.Bot(command_prefix='!')
+intents = discord.Intents.all()
+bot = commands.Bot(command_prefix=config["command_prefix"], intents=intents)
 
 def make_playfab_request(path, payload=None, method='post'):
     url = f'https://{config["playfab_title_id"]}.playfabapi.com/{path}'
