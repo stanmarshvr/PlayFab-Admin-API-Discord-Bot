@@ -1,0 +1,6 @@
+{
+  "discord_bot_token": "put your discord bot token here",
+  "playfab_title_id": "put title ID here",
+  "playfab_secret_key": "put secret key here",
+  "allowed_role_id": "put the role id in your server that you want to be able to run commands here"
+}
