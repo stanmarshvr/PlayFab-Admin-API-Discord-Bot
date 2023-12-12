@@ -9,6 +9,11 @@ with open('config.json', 'r') as config_file:
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix=config["command_prefix"], intents=intents)
 
+@bot.event
+async def on_ready():
+    print("Your bot is online and ready (logged in as {bot.user.name})")
+    await bot.change_presence(activity=discord.Game(name="https://github.com/stanmarshvr/PlayFab-Admin-API-Discord-Bot"))
+
 def make_playfab_request(path, payload=None, method='post'):
     url = f'https://{config["playfab_title_id"]}.playfabapi.com/{path}'
     headers = {
