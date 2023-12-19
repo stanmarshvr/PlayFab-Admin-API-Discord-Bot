@@ -38,11 +38,10 @@ def is_allowed_role(ctx):
     allowed_role_id = int(config["allowed_role_id"])
     return any(role.id == allowed_role_id for role in ctx.author.roles)
 
-@bot.hybrid_command(name="ban")
-@commands.check(is_allowed_role)
+@bot.hybrid_command(name="ban", description="Ban's a User from PlayFab")
 async def ban(ctx, player_id : str , reason : str , length : int):
     payload = {
-        "Bans": [{
+        "Bans": [{        
         'DurationInHours': length,
         'Reason': reason,
         'PlayFabId': player_id
@@ -52,9 +51,25 @@ async def ban(ctx, player_id : str , reason : str , length : int):
 
     # Check if the user has the specified role
     if discord.utils.get(ctx.author.roles, id=target_role_id):
+        embed = discord.Embed(title="Processing Your Request",
+                      description="This Could Take A While...",
+                      colour=0x9a0e95)
+
+        embed.set_author(name="Playfab Fella",
+                 url="https://www.youtube.com/",
+                 icon_url="https://i.ibb.co/stPtTcw/2023-12-01-0ih-Kleki.png")
+
+        message = await ctx.send(embed=embed)
         response = make_playfab_request('Admin/BanUsers', payload)
         if response and not response.get('200'):
-            await ctx.send(f'Banned player {player_id} for {length} due to {reason}')
+            embed2 = discord.Embed(title="Success!",
+                      description=f'Succesfully Banned {player_id} for {length} due to {reason}',
+                      colour=0x00ff4c)
+
+            embed2.set_author(name="Playfab Fella",
+                 url="https://www.youtube.com/",
+                 icon_url="https://i.ibb.co/stPtTcw/2023-12-01-0ih-Kleki.png")
+            await message.edit(embed = embed2)
         else:
             await ctx.send('Failed to ban the player.')
     else:
