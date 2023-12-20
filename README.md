@@ -2,21 +2,10 @@
 This is a pretty simple Discord bot written in Python that has commands that make API requests to your PlayFab title to do things like ban players, give items, give virtual currency, delete players, etc. Feel free to skid this, just give credits please.
 # Commands:
 ```
-  addcurrency player_id amount currency
-  ban player_id reason length
-  deletemasterplayer player_id
-  deletemasterplayeraccount player_id
-  getplayerprofile player_id         
-  getuseraccountinfo player_id       
-  getuserbans player_id              
-  getuserinventory player_id         
-  grantitem player_id item_id
-  help (DEFAULT DISCORD.PY HELP MESSAGE FOR NOW IT WORKS THOUGH)
-  removecurrency player_id amount currency_code        
-  revokeallbans player_id             
-  revokeban ban_id                 
-  revokeitem player_id item_id               
-  searchforplayer name (NOT WORKING AT THE MOMENT, SORRY!)  
+  So Far you can do some slash commands
+  do /help
+  /ban
+  /delete_player (NOT TESTED)
 ```
 # Installing and Configuration:
 1. Install Python (https://www.python.org)
@@ -28,3 +17,7 @@ Done!
 
 # Using the bot:
 Simply add your created Discord bot to the server you want, then run start.bat and then people that have the role you specified in config.json can run the commands! Have fun!
+
+
+# Extra:
+Change Around some of the settings like the embed stuff saying JTMC's bot.
