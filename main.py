@@ -100,7 +100,7 @@ async def delete_player(ctx, player_id : str):
     print(response)
     if response and not response.get('200'):
         embed2 = discord.Embed(title="Success!",
-                      description=f'Succesfully Banned {player_id} for {length} due to {reason}',
+                      description=f'Succesfully Deleted {player_id}',
                       colour=0x00ff4c)
 
         embed2.set_author(name="Playfab Fella",
