@@ -101,57 +101,62 @@ async def ban(ctx, player_id : str , reason : str , length : int):
 
 @bot.hybrid_command(name="helpa", description="Show's what the bot can do, (so far)")
 async def helpa(ctx):
-   # Replace 'YOUR_ROLE_ID' with the actual role ID you want to check
-    
-
-    # Check if the user has the specified role
-    if discord.utils.get(ctx.author.roles, id=target_role_id):
-        await ctx.send("# Hey! Welcome to my Bot\nMade By JTMC\n# ❗❗❗ALERT! YOU WILL NEED THE ROLE ID IN ORDER TO USE THESE COMMANDS❗❗❗\n\n\n/ban <player_id> <reason> <DurationInHours> This Simply Bans a user from your playfab title")
-    else:
-        await ctx.send(f"You don't have the required role.")
+  
+   await ctx.send("# Hey! Welcome to my Bot\nMade By JTMC\n# ❗❗❗ALERT! YOU WILL NEED THE ROLE ID IN ORDER TO USE THESE COMMANDS❗❗❗\n\n\n/ban <player_id> <reason> <DurationInHours> This Simply Bans a user from your playfab title")
    
 
 
 @bot.hybrid_command(name="delete_player", description="Deletes a Master Player Account")
 async def delete_player(ctx, player_id: str):
-    payload = {
+    if discord.utils.get(ctx.author.roles, id=target_role_id):
+        payload = {
         'PlayFabId': player_id
-    }
+        }
 
-    embed = discord.Embed(title="Processing Your Request",
+        embed = discord.Embed(title="Processing Your Request",
                           description="This Could Take A While...",
                           colour=0x9a0e95)
 
-    embed.set_author(name="Playfab Fella",
+        embed.set_author(name="Playfab Fella",
                      url="https://www.youtube.com/",
                      icon_url="https://i.ibb.co/stPtTcw/2023-12-01-0ih-Kleki.png")
 
-    message = await ctx.send(embed=embed)
-    response = make_playfab_request('Admin/DeleteMasterPlayerAccount', payload)
-    print(response)
-    response_str = json.dumps(response)
-    response_content = get_content_inside_brackets(response_str)
+        message = await ctx.send(embed=embed)
+        response = make_playfab_request('Admin/DeleteMasterPlayerAccount', payload)
+        print(response)
+        response_str = json.dumps(response)
+        response_content = get_content_inside_brackets(response_str)
     
 
-    if response.get('200'):
-        embed2 = discord.Embed(title="Success!",
+        if response.get('200'):
+            embed2 = discord.Embed(title="Success!",
                                description=f'Successfully Deleted {player_id}',
                                colour=0x00ff4c)
 
-        embed2.set_author(name="Playfab Fella",
+            embed2.set_author(name="Playfab Fella",
                           url="https://www.youtube.com/",
                           icon_url="https://i.ibb.co/stPtTcw/2023-12-01-0ih-Kleki.png")
-        await message.edit(embed=embed2)
-    else:
-        if response.get('error'):
-            embed3 = discord.Embed(title="Error!",
+            await message.edit(embed=embed2)
+        else:
+            if response.get('error'):
+                embed3 = discord.Embed(title="Error!",
                                    description=f'Failed to delete master player account\nReason: {response_content}',
                                    colour=0xff0000)
 
-            embed3.set_author(name="Playfab Fella",
+                embed3.set_author(name="Playfab Fella",
                               url="https://www.youtube.com/",
                               icon_url="https://i.ibb.co/stPtTcw/2023-12-01-0ih-Kleki.png")
             await message.edit(embed=embed3)
+    else:
+        embed4 = discord.Embed(title="Error!",
+                      description=f'You dont have the required role',
+                      colour=0xff0000)
+
+        embed4.set_author(name="Playfab Fella",
+                 url="https://www.youtube.com/",
+                 icon_url="https://i.ibb.co/stPtTcw/2023-12-01-0ih-Kleki.png")
+        await ctx.send(embed = embed4)
+
 
 
 
