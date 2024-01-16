@@ -11,15 +11,22 @@ with open('config.json', 'r') as config_file:
 target_role_id = config.get('allowed_role_id')
 print(config.get('allowed_role_id'))
 
-bot = commands.Bot(command_prefix="!",intents=discord.Intents.all()) 
+bot = commands.Bot(command_prefix="!",intents=discord.Intents.all(), help_command=None) 
+
+
+
+@bot.hybrid_command(name="help", description="Show's what the bot can do.")
+async def help(ctx):
+    await ctx.send("# Hey! Welcome to my Bot\nMade By JTMC\n# ❗❗❗ALERT! YOU WILL NEED THE ROLE ID IN ORDER TO USE THESE COMMANDS❗❗❗\n\n\n/ban <player_id> <reason> <DurationInHours> This Simply Bans a user from your playfab title\n\n/delete_player <player_id>. This deletes the Master Player Account in your playfab title.")
+
+
+
 
 @bot.event
 async def on_ready():
     print("Your bot is online and ready (logged in as {bot.user.name})")
     await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="/help"))
     await bot.tree.sync() #sync the command tree
-    help_command=None
-    bot.remove_command('help')
     print("Bot is ready and online")
 
 
@@ -99,11 +106,7 @@ async def ban(ctx, player_id : str , reason : str , length : int):
     
     
 
-@bot.hybrid_command(name="helpa", description="Show's what the bot can do, (so far)")
-async def helpa(ctx):
-  
-   await ctx.send("# Hey! Welcome to my Bot\nMade By JTMC\n# ❗❗❗ALERT! YOU WILL NEED THE ROLE ID IN ORDER TO USE THESE COMMANDS❗❗❗\n\n\n/ban <player_id> <reason> <DurationInHours> This Simply Bans a user from your playfab title")
-   
+
 
 
 @bot.hybrid_command(name="delete_player", description="Deletes a Master Player Account")

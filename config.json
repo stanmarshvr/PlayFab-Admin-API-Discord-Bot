@@ -2,6 +2,6 @@
   "discord_bot_token": "",
   "playfab_title_id": "",
   "playfab_secret_key": "",
-  "allowed_role_id": 12345,
+  "allowed_role_id": 123456,
  "command_prefix": ".(not needed)" 
 }
