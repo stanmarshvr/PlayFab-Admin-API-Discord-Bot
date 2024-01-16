@@ -1,7 +1,7 @@
 {
-  "discord_bot_token": "Your Discord Token",
-  "playfab_title_id": "Your title ID",
-  "playfab_secret_key": "Your Playfab Secret Key",
-  "allowed_role_id": "The Role ID (will be used later)",
+  "discord_bot_token": "",
+  "playfab_title_id": "",
+  "playfab_secret_key": "",
+  "allowed_role_id": 12345,
  "command_prefix": ".(not needed)" 
 }

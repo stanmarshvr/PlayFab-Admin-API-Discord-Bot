@@ -8,6 +8,9 @@ import re
 with open('config.json', 'r') as config_file:
     config = json.load(config_file)
 
+target_role_id = config.get('allowed_role_id')
+print(config.get('allowed_role_id'))
+
 bot = commands.Bot(command_prefix="!",intents=discord.Intents.all()) 
 
 @bot.event
@@ -59,7 +62,7 @@ async def ban(ctx, player_id : str , reason : str , length : int):
         'PlayFabId': player_id
         }]
     }
-    target_role_id = 1196863012062105700
+    
 
     # Check if the user has the specified role
     if discord.utils.get(ctx.author.roles, id=target_role_id):
@@ -99,7 +102,7 @@ async def ban(ctx, player_id : str , reason : str , length : int):
 @bot.hybrid_command(name="helpa", description="Show's what the bot can do, (so far)")
 async def helpa(ctx):
    # Replace 'YOUR_ROLE_ID' with the actual role ID you want to check
-    target_role_id = 1196863012062105700
+    
 
     # Check if the user has the specified role
     if discord.utils.get(ctx.author.roles, id=target_role_id):
